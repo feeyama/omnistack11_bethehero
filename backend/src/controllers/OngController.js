@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const connection = require('../database/connection');
+const generateUniqueId = require('../utils/generateUniqueid');
 
 module.exports = {
     //Lista todas as ongs
@@ -14,7 +15,7 @@ module.exports = {
         //const data = request.body;
         //pegar cada valor em uma variavel
         const { name, email, whatsapp, city, uf } = request.body;
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = generateUniqueId();
         await connection('ongs').insert({
             id,
             name,

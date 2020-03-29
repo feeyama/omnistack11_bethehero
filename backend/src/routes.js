@@ -1,4 +1,6 @@
 const express = require('express');
+//Biblioteca de validação
+const { celebrate, Segments, Joi} = require('celebrate');
 //const crypto = require('crypto');
 //const connection = require('./database/connection');
 const ongController = require('./controllers/OngController');
@@ -16,15 +18,59 @@ const routes = express.Router();
 //Rota de login
 routes.post('/sessions',sessionController.create);
 
+/**
+ * Parametros da requisição
+ * Query
+ * Route
+ * Body
+ */
 //Rota das ONGs
-routes.get('/ongs', ongController.index)
-routes.post('/ongs', ongController.create);
+routes.get('/ongs', celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    id: Joi.string().required(),
+  }) 
+}), ongController.index)
+
+routes.post('/ongs', celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    name: Joi.string().required().min(3),
+    email: Joi.string().required().email(),
+    whatsapp: Joi.string().required().min(10).max(11),
+    city: Joi.string().required(),
+    uf: Joi.string().required().length(2),
+  })
+}),  ongController.create);
+
 //Rota dos Casos
-routes.get('/incidents', incidentController.index);
-routes.post('/incidents', incidentController.create);
-routes.delete('/incidents/:id', incidentController.delete);
+routes.get('/incidents', celebrate({
+  [Segments.QUERY]: Joi.object().keys({
+    page: Joi.number(),
+  })
+}), incidentController.index);
+
+routes.post('/incidents', celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required(),
+  }).unknown(),
+  [Segments.BODY]: Joi.object().keys({
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    value: Joi.number().required().min(1).positive(),
+  }), 
+}), incidentController.create);
+
+routes.delete('/incidents/:id', celebrate({
+  [Segments.PARAMS]: Joi.object().keys({
+    id: Joi.number().required(),
+  })
+}), incidentController.delete);
+
 //Rota dos casos especificos de uma ONG
-routes.get('/profile', profileController.index);
+routes.get('/profile', celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required(),
+  }).unknown(),
+}), profileController.index);
 
 module.exports = routes;
 
