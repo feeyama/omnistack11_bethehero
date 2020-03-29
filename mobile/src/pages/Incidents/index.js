@@ -40,6 +40,8 @@ export default function Incidents()
     setLoading(false);
   }
 
+  //Função que ativa toda vez que o valor das variáveis que estao sendo passadas mudarem
+  //Carrega a informação toda vez que o componente é exibido em tela
   useEffect(() => {
     loadIncidents();
   }, []);
