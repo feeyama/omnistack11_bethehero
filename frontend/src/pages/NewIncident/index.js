@@ -18,10 +18,9 @@ export default function NewIncident() {
 
   async function handleNewIncident(e)
   {
-    e.preventDefault();
+    e.preventDefault(); //PRESTAR ATENÇÃO COMO DIGITOU 
 
-    const data = 
-    {
+    const data = {
       title,
       description,
       value,

@@ -28,7 +28,7 @@ export default function Profile() {
     try
     {
         await api.delete(`incidents/${id}`,{
-          headers: 
+          headers:
           {
             Authorization: ongId,
           }
