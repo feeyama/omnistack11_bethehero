@@ -23,7 +23,8 @@ Projeto resultado da Semana OmniStack 11.0 by Rocketseat 🚀
   <a href="#projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#staff-rocketseat">Staff Rocketseat</a>&nbsp;&nbsp;&nbsp;
 </p>
-<br><br>
+
+<br>
 
 ## Recursos utilizados
 Este projeto foi desenvolvido utilizando as seguintes tecnologias:
@@ -44,6 +45,10 @@ Algumas bibliotecas/frameworks utilizados:
 - [Celebrate](https://www.npmjs.com/package/celebrate)
 
 ## Projeto
+<p align="center">
+    <img alt="beTheHeroApi" src="https://user-images.githubusercontent.com/62675198/77952727-7a478f80-72a2-11ea-9c27-b978cec09491.gif">
+</p>
+
 Criação da aplicação (backend,frontend e mobile) <b>Be The Hero</b> utilizando a Stack Node, React e React Native.
 
 <br>
